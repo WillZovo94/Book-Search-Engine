@@ -1,7 +1,31 @@
-const { gql } = require('apollo-server-express');
+// const { gql } = require('apollo-server-express');
 
-const typeDefs = gql`
+const typeDefs = `#graphql
 
+
+    type User {
+        _id: ID
+        username: String
+        email: String
+        bookCount: Int
+        savedBooks: [Book]
+    }
+
+    type Book {
+        bookId: String
+        authors: [String]
+        description: String
+        title: String
+        image: String
+        link: String
+    }
+
+    type Auth {
+        token: String
+        user: User
+    }
+
+    
     type Query {
         me: User
     }
@@ -24,28 +48,6 @@ const typeDefs = gql`
         ): User
 
         removeBook(BookId: String!): User
-    }
-
-    type User {
-        _id: ID
-        username: String
-        email: String
-        bookCount: Int
-        savedBooks: [Book]
-    }
-
-    type Book {
-        bookId: String
-        authors: [String]
-        description: String
-        title: String
-        image: String
-        link: String
-    }
-
-    type Auth {
-        token: String
-        user: User
     }
 
 `;
